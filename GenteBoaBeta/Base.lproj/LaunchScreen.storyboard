@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fundo" translatesAutoresizingMaskIntoConstraints="NO" id="tEN-rc-ter">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GenteBoaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="yVP-7B-KUF">
+                                <rect key="frame" x="173" y="70" width="254" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="809-6p-zDN"/>
+                                    <constraint firstAttribute="width" constant="254" id="gej-WP-b7I"/>
+                                </constraints>
+                            </imageView>
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desenvolvido por Filipo T Negrão" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7k-1e-ksw">
+                                <rect key="frame" x="173" y="571" width="254" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="eVP-ni-dbu"/>
+                                    <constraint firstAttribute="height" constant="21" id="zHt-fZ-UHJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tEN-rc-ter" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="1Uv-rP-HUu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="F7k-1e-ksw" secondAttribute="bottom" constant="8" id="3KX-vg-8cu"/>
+                            <constraint firstItem="yVP-7B-KUF" firstAttribute="centerX" secondItem="tEN-rc-ter" secondAttribute="centerX" id="PYN-tS-a88"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="tEN-rc-ter" secondAttribute="bottom" id="a1T-2l-f7c"/>
+                            <constraint firstItem="tEN-rc-ter" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="ar7-ck-GX9"/>
+                            <constraint firstItem="yVP-7B-KUF" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="50" id="kaK-rY-KEO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tEN-rc-ter" secondAttribute="trailing" constant="-20" id="nOz-Az-Bnu"/>
+                            <constraint firstItem="F7k-1e-ksw" firstAttribute="centerX" secondItem="tEN-rc-ter" secondAttribute="centerX" id="quq-Eq-gNP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GenteBoaLogo" width="600" height="173"/>
+        <image name="fundo" width="1080" height="1920"/>
+    </resources>
+</document>
