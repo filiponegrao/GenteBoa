@@ -52,7 +52,7 @@ class PeopleDetail_ViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.title = "Perfil completo"
         
-        self.scrollView = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
+        self.scrollView = UIScrollView(frame: CGRectMake(0, 50, screenWidth, screenHeight))
         self.scrollView.backgroundColor = UIColor.whiteColor()
         self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
@@ -96,7 +96,7 @@ class PeopleDetail_ViewController: UIViewController, UITableViewDelegate, UITabl
         self.negativasLabel = UILabel(frame: CGRectMake(10, self.tableView1.frame.origin.y + self.tableView1.frame.size.height + self.margem, screenWidth - 20, 50))
         self.negativasLabel.layer.cornerRadius = 8
         self.negativasLabel.backgroundColor = GMColor.red400Color()
-        self.negativasLabel.text = "Avaliações negativas"
+        self.negativasLabel.text = "Posso melhorar"
         self.negativasLabel.textAlignment = .Center
         self.negativasLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 18)
         self.negativasLabel.textColor = UIColor.whiteColor()
@@ -127,7 +127,7 @@ class PeopleDetail_ViewController: UIViewController, UITableViewDelegate, UITabl
         self.textView.font = UIFont(name: "Helvetica", size: 14)
         self.scrollView.addSubview(self.textView)
         
-        self.scrollView.contentSize = CGSizeMake(screenWidth, self.imageView.frame.size.height + self.nameLabel.frame.size.height + self.courseLabel.frame.size.height + self.positivasLabel.frame.size.height + self.tableView1.frame.size.height + self.margem*4 + self.tableView2.frame.size.height + self.negativasLabel.frame.size.height + self.moreLabel.frame.size.height + self.textView.frame.size.height)
+        self.scrollView.contentSize = CGSizeMake(screenWidth, self.imageView.frame.size.height + self.nameLabel.frame.size.height + self.courseLabel.frame.size.height + self.positivasLabel.frame.size.height + self.tableView1.frame.size.height + self.margem*4 + self.tableView2.frame.size.height + self.negativasLabel.frame.size.height + self.moreLabel.frame.size.height + self.textView.frame.size.height + 50)
 
         
     }
@@ -158,20 +158,22 @@ class PeopleDetail_ViewController: UIViewController, UITableViewDelegate, UITabl
         if(tableView == self.tableView1)
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CellProfile_TableViewCell
+            cell.selectionStyle = .None
             
             cell.roundedView.backgroundColor = GMColor.grey300Color()
             cell.title.text = self.people.positivas[indexPath.row].name
-            cell.number.text = "+\(self.people.positivas[indexPath.row].times)"
+            cell.number.text = "\(self.people.positivas[indexPath.row].times)"
             
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCellWithIdentifier("Cell2", forIndexPath: indexPath) as! CellProfile_TableViewCell
-            
+            cell.selectionStyle = .None
+
             cell.roundedView.backgroundColor = GMColor.grey300Color()
             cell.title.text = self.people.negativas[indexPath.row].name
-            cell.number.text = "-\(self.people.negativas[indexPath.row].times)"
+            cell.number.text = "\(self.people.negativas[indexPath.row].times)"
             
             return cell
         }

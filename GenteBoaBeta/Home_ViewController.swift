@@ -435,11 +435,24 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
         DAOPeople.sharedInstance.course = filter
         
         self.closeFilter()
+        DAOPeople.sharedInstance.peopleSeen = [String]()
+        self.nextUser = nil
+        self.carregaProximo()
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
-        return self.cursos[row]
+//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+//    {
+//        return self.cursos[row]
+//    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let label = UILabel(frame: CGRectMake(0,0,screenWidth, 44))
+        label.text = self.cursos[row]
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
+        label.textAlignment = .Center
+        
+        return label
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int

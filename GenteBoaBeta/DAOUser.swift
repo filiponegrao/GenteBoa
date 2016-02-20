@@ -597,15 +597,19 @@ class DAOUser
         }
     }
     
-    func logout()
+    func logout(callback: (error: NSError?) -> Void)
     {
         PFUser.logOutInBackgroundWithBlock { (error: NSError?) -> Void in
             
             if(error != nil)
             {
                 self.user = nil
+                callback(error: nil)
             }
-            
+            else
+            {
+                callback(error: error)
+            }
         }
     }
 

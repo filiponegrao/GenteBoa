@@ -23,7 +23,6 @@ class DAOPeople
     
     
     
-    
     class var sharedInstance : DAOPeople
     {
         return data
@@ -42,7 +41,7 @@ class DAOPeople
     
     func getRandomUser(course: String, callback: (people: People?) -> Void ) -> Void
     {
-        print(self.peopleSeen)
+        print("curso selecionado: \(self.course) e pessoas ja vistas: \(self.peopleSeen)")
         
         var filter : String?
         if(self.course == "Todos")

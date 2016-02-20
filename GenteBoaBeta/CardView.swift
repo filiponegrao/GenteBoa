@@ -50,32 +50,6 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).CGPath
         
-//        
-//        
-//        self.imageView = UIImageView(frame: CGRectMake(10, 10, frame.size.width/2 - 20, frame.size.width/2 - 20))
-//        self.imageView.center = CGPointMake(frame.size.width/2, self.imageView.center.y)
-//        self.imageView.image = self.people.photo
-//        self.imageView.contentMode = .ScaleAspectFill
-//        self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2
-//        self.imageView.clipsToBounds = true
-//        self.addSubview(self.imageView)
-//        
-//        
-//        self.nameLabel = UILabel(frame: CGRectMake(20, self.imageView.frame.origin.y + self.imageView.frame.size.height + 10, frame.size.width - 20, 50))
-//        self.nameLabel.text = "\(people.name)"
-//        self.nameLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 30)
-//        self.addSubview(self.nameLabel)
-//        
-//        let h2 = self.heightForView("\(self.people.course), \(self.people.university)", font:UIFont(name: "Helvetica", size: 12)!, width: frame.size.width - 20)
-//        
-//        self.courseLabel = UILabel(frame: CGRectMake(self.nameLabel.frame.origin.x, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height, frame.size.width - 20, h2))
-//        self.courseLabel.text = "\(self.people.course), \(self.people.university)"
-//        self.courseLabel.font = UIFont(name: "Helvetica", size: 12)
-//        self.addSubview(self.courseLabel)
-        
-//        let tableHeigth = frame.size.height - (self.imageView.frame.size.height + 10 + self.nameLabel.frame.size.height + 10 + self.courseLabel.frame.size.height + 20)
-        
-//        self.tableView = UITableView(frame: CGRectMake(0, self.courseLabel.frame.origin.y + self.courseLabel.frame.size.height + 10, frame.size.width, tableHeigth))
         self.tableView = UITableView(frame: self.bounds)
         self.tableView.backgroundColor = UIColor.clearColor()
         self.tableView.delegate = self
@@ -90,7 +64,6 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
     
     deinit
     {
-//        print("desalocando cartao")
         self.people = nil
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
@@ -111,21 +84,21 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
         case 0:
             
             self.imageView?.removeFromSuperview()
-            self.imageView = UIImageView(frame: CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height*3/5))
+            self.imageView = UIImageView(frame: CGRectMake(0, 0, self.tableView.frame.size.width, cell.frame.size.height*3/4))
             self.imageView.clipsToBounds = true
             self.imageView.contentMode = .ScaleAspectFill
             self.imageView.image = self.people.photo
             cell.addSubview(self.imageView)
             
             self.nameLabel?.removeFromSuperview()
-            self.nameLabel = UILabel(frame: CGRectMake(10,self.imageView.frame.origin.y + self.imageView.frame.size.height + 5, self.tableView.frame.size.width - 20, 30))
+            self.nameLabel = UILabel(frame: CGRectMake(10,self.imageView.frame.origin.y + self.imageView.frame.size.height + 5, self.tableView.frame.size.width - 20, cell.frame.size.height/8))
             self.nameLabel.text = self.people.name
             self.nameLabel.textAlignment = .Left
             self.nameLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 25)
             cell.addSubview(self.nameLabel)
             
             self.courseLabel?.removeFromSuperview()
-            self.courseLabel = UILabel(frame: CGRectMake(10, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height, self.tableView.frame.size.width, 30))
+            self.courseLabel = UILabel(frame: CGRectMake(10, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height, self.tableView.frame.size.width, cell.frame.size.height/8))
             self.courseLabel.font = UIFont(name: "Helvetica", size: 12)
             if(self.people.course.characters.count > 26)
             {
@@ -146,7 +119,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             self.pos?.removeFromSuperview()
             self.pos = UIView(frame: CGRectMake(0,5,tableView.frame.size.width, self.tableView.frame.size.height/4 - 10))
             pos.backgroundColor = GMColor.green400Color()
-            pos.layer.cornerRadius = 4
+//            pos.layer.cornerRadius = 4
             pos.layer.shadowColor = UIColor.blackColor().CGColor
             pos.layer.shadowOffset = CGSizeMake(1, 1)
             pos.layer.shadowRadius = 1
@@ -159,7 +132,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             cell.addSubview(pos)
 
             let label = UILabel(frame: CGRectMake(0,0,pos.frame.size.width/3,pos.frame.size.height))
-            label.text = "pontos\npositivos"
+            label.text = "Avaliações\npositivas"
             label.numberOfLines = 2
             label.font = UIFont(name: "Helvetica Bold", size: 14)
             label.textAlignment = .Center
@@ -175,7 +148,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             }
             else
             {
-                text = "\(self.people.positivas[0].name) +\(self.people.positivas[0].times)\n\(self.people.positivas[1].name) +\(self.people.positivas[1].times)\n\(self.people.positivas[2].name) +\(self.people.positivas[2].times)"
+                text = "\(self.people.positivas[0].name) \(self.people.positivas[0].times)\n\(self.people.positivas[1].name) \(self.people.positivas[1].times)\n\(self.people.positivas[2].name) \(self.people.positivas[2].times)"
             }
 
             let pontos = UILabel(frame: CGRectMake(pos.frame.size.width/3,0,pos.frame.size.width*2/3,pos.frame.size.height))
@@ -193,7 +166,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             self.neg = UIView(frame: CGRectMake(0,5,tableView.frame.size.width, self.tableView.frame
                 .size.height/4 - 10 ))
             neg.backgroundColor = GMColor.green100Color()
-            neg.layer.cornerRadius = 5
+//            neg.layer.cornerRadius = 5
             neg.layer.shadowColor = UIColor.blackColor().CGColor
             neg.layer.shadowOffset = CGSizeMake(1, 1)
             neg.layer.shadowRadius = 1
@@ -206,7 +179,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             cell.addSubview(neg)
 
             let label = UILabel(frame: CGRectMake(0,0,neg.frame.size.width/3,neg.frame.size.height))
-            label.text = "pontos\nnegativos"
+            label.text = "posso\nmelhorar"
             label.numberOfLines = 2
             label.textAlignment = .Center
             label.font = UIFont(name: "Helvetica Bold", size: 14)
@@ -220,7 +193,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             }
             else
             {
-                text = "\(self.people.negativas[0].name) +\(self.people.negativas[0].times)\n\(self.people.negativas[1].name) +\(self.people.negativas[1].times)\n\(self.people.negativas[2].name) +\(self.people.negativas[2].times)"
+                text = "\(self.people.negativas[0].name) \(self.people.negativas[0].times)\n\(self.people.negativas[1].name) \(self.people.negativas[1].times)\n\(self.people.negativas[2].name) \(self.people.negativas[2].times)"
             }
 
             let pontos = UILabel(frame: CGRectMake(neg.frame.size.width/3,0,neg.frame.size.width*2/3,neg.frame.size.height))
@@ -306,11 +279,13 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
     
     func scrollViewDidScroll(scrollView: UIScrollView)
     {
+        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        
         if(scrollView.contentOffset.y < 0)
         {
             self.imageView.alpha = 1
             self.imageView.frame.origin.y = scrollView.contentOffset.y
-            self.imageView.frame.size.height = self.tableView.frame.size.height*3/5 - (scrollView.contentOffset.y)
+            self.imageView.frame.size.height = cell!.frame.size.height*3/4 - (scrollView.contentOffset.y)
         }
 //        else if(scrollView.contentOffset.y <= 150 && scrollView.contentOffset.y > 0)
 //        {

@@ -299,7 +299,7 @@ class Settings_ViewController: UIViewController, UITableViewDelegate, UITableVie
             let alert = UIAlertController(title: "Tem certeza?", message: "Tem certeza que deseja deslogar com sua conta do aplicativo?", preferredStyle: .Alert)
             
             alert.addAction(UIAlertAction(title: "Sim", style: .Default, handler: { (action: UIAlertAction) -> Void in
-                
+                self.logOut()
             }))
             
             alert.addAction(UIAlertAction(title: "Nao", style: .Cancel, handler: { (action: UIAlertAction) -> Void in
@@ -432,20 +432,17 @@ class Settings_ViewController: UIViewController, UITableViewDelegate, UITableVie
     func logOut()
     {
         print("saindo..")
-        DAOUser.sharedInstance.logout()
-        let vc = self.presentingViewController
-        if(vc == nil)
-        {
-            self.presentViewController(Login_ViewController(), animated: true, completion: { () -> Void in
-                
-            })
+        DAOUser.sharedInstance.logout { (error) -> Void in
+            
+            if(error == nil)
+            {
+                let window = ((UIApplication.sharedApplication().delegate) as! AppDelegate).window
+                window?.rootViewController = Login_ViewController()
+                window?.makeKeyAndVisible()
+            }
+            
         }
-        else
-        {
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                
-            })
-        }
+        
     }
     
     func back()

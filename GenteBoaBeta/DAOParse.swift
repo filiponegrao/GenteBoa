@@ -105,19 +105,25 @@ class DAOParse
     
     func getRandomUserDifferentFromGroup(group: [String], course: String?, callback: (people: People?) -> Void ) -> Void
     {
-        let query = PFUser.query()
+        let query = PFUser.query()!
+        
+        
+        query.whereKey("email", notContainedIn: group)
+        query.whereKey("username", notEqualTo: DAOUser.sharedInstance.getEmail())
+        query.whereKeyExists("university")
+        query.whereKeyExists("course")
+        query.whereKeyExists("period")
+        query.whereKeyExists("about")
+        
         if(course != nil)
         {
-            let filter = course! 
-            query?.whereKey("course", equalTo: filter)
+            let filter = course!
+            query.whereKey("course", equalTo: filter)
         }
-        query?.whereKey("email", notContainedIn: group)
-        query?.whereKey("username", notEqualTo: DAOUser.sharedInstance.getEmail())
-        query?.whereKeyExists("university")
-        query?.whereKeyExists("course")
-        query?.whereKeyExists("period")
-        query?.whereKeyExists("about")
-        query?.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+        
+        query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            print(objects?.count)
             
             if(objects != nil && objects?.count != 0)
             {
@@ -136,6 +142,8 @@ class DAOParse
                 let period = object["period"] as! Int
                 let about = object["about"] as! String
                 let hiscourse = object["course"] as! String
+                
+                print("selecionado \(name) de curso \(hiscourse) e curso desejado era \(course)")
                 
                 let photo = object["profileImage"] as! PFFile
                 
