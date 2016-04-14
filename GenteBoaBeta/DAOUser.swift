@@ -163,16 +163,28 @@ class DAOUser
       */
     func loginParse(username: String, password: String)
     {
+        print(username)
+        print(password)
         PFUser.logInWithUsernameInBackground(username, password: password) { (user: PFUser?, error: NSError?) -> Void in
-            
-            
+            if(error == nil)
+            {
+                if(user!["university"] == nil || user!["about"] == nil || user!["period"] == nil || user!["course"] == nil)
+                {
+                    NSNotificationCenter.defaultCenter().postNotificationName(UserCondition.incompleteRegister.rawValue, object: nil)
+                }
+                else
+                {
+                    NSNotificationCenter.defaultCenter().postNotificationName(UserCondition.userLogged.rawValue, object: nil)
+                }
+            }
+            else if(error?.code == 101)
+            {
+                NSNotificationCenter.defaultCenter().postNotificationName(UserCondition.userNotFound.rawValue, object: nil)
+            }
             
         }
     }
 
-    
-    
-    
     /** Funcao assincrona que executa o login no Parse
       * via Facebook (Parse é do Facebook);
       * A funcao nao retorna nenhuma condicao de retorno,
@@ -569,7 +581,19 @@ class DAOUser
     
     func getCourse() -> String?
     {
-        return PFUser.currentUser()!["course"] as! String
+        if(PFUser.currentUser() != nil)
+        {
+            if(PFUser.currentUser()!["course"] != nil)
+            {
+                return PFUser.currentUser()!["course"] as! String
+            }
+        }
+        else
+        {
+            return nil
+        }
+        
+        return nil
     }
     
     func changeProfilePicture(photo: UIImage, callback: (success: Bool) -> Void)

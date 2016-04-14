@@ -53,15 +53,8 @@ class Hashtag
     
     class func hashtagsDisponiveis() -> [String]
     {
-        let hashs = ["Comprometimento", "Pontualidade", "Comunicação", "Capacidade de entendimento",
-                    "Interesse", "Antecipação", "Acessibilidade/ disponibilidade", "Pro-atividade",
-                    "Sinceridade/ transparência", "Abertura para diálogos", "Abertura para ideias",
-                    "Vontade de aprender", "Criatividade", "Responsabilidade", "Seguir Cronograma/cumprir prazos",
-            "Dedicação", "Paciência", "Participação","Atenção" ,"detalhes", "Prontidão", "Eficácia", "Flexibilidade",
-            "Automotivação", "Organização", "Perfeccionismo", "Cordialidade", "Capricho", "Esforço", "Competitividade",
-            "Respeito", "Liderança", "Confiabilidade", "Autoconfiança", "Motivação de grupo", "Ética de trabalho",
-            "Tolerância", "Adaptação", "Planejamento", "Valorização da equipe", "Descentralização de tarefas (oposto de centralizador)",
-            "Simpatia" , "Empatia"]
+        let hashs = ["Comprometimento", "Pontualidade", "Comunicação", "Interesse", "Disponibilidade", "Proatividade", "Sinceridade", "Responsabilidade", "Diálogo", "Abertura para críticas", "Dedicação", "Paciência", "Participação", "Capricho", "Eficácia", "Flexibilidade", "Automotivação", "Organização", "Cordialidade", "Esforço", "Competitividade", "Respeito",
+            "Liderança", "Confiabilidade", "Autoconfiança", "Ética", "Tolerância", "Adaptação", "Simpatia", "Empatia"]
         
         return hashs
     }

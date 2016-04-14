@@ -43,7 +43,7 @@ class Settings_ViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.view.addSubview(self.tableView)
         
-        self.closeButton = UIBarButtonItem(image: UIImage(named: "close"), style: .Bordered, target: self, action: "back")
+        self.closeButton = UIBarButtonItem(title: "Fechar", style: .Bordered, target: self, action: "back")
         self.navigationItem.leftBarButtonItem = self.closeButton
         
         self.imageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenWidth))
@@ -138,7 +138,7 @@ class Settings_ViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         if(section == 0)
         {
-            return 2
+            return 3
         }
         else if(section == 1)
         {
@@ -216,6 +216,11 @@ class Settings_ViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.textLabel?.text = "Editar meu perfil"
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 
+            case 2:
+                
+                cell.textLabel?.text = "Visualizar perfil"
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                
             default:
                 cell.accessoryType = UITableViewCellAccessoryType.None
 
@@ -273,10 +278,28 @@ class Settings_ViewController: UIViewController, UITableViewDelegate, UITableVie
             {
                 self.changeProfilePicture()
             }
-            else
+            else if(indexPath.row == 1)
             {
                 let edit = EditPerfil_ViewController()
                 self.navigationController?.pushViewController(edit, animated: true)
+            }
+            else
+            {
+                self.loadingView = LoadingView()
+                self.navigationController!.view.addSubview(self.loadingView)
+                
+                DAOPeople.sharedInstance.getPeople(DAOUser.sharedInstance.getEmail(), callback: { (people) -> Void in
+                    if(people != nil)
+                    {
+                        self.navigationController?.pushViewController(PeopleDetail_ViewController(people: people!), animated: true)
+                    }
+                    else
+                    {
+                        SweetAlert().showAlert("Erro!", subTitle: "Problemas ao recuperar suas informações no banco de dados! Tente de novo ou abra novamente o app!", style: AlertStyle.Warning, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
+
+                    }
+                    self.loadingView.removeFromSuperview()
+                })
             }
             
         case 1:

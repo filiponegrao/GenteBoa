@@ -42,6 +42,14 @@
 		803D61011BF8DC80004EF38F /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803D60FE1BF8DC80004EF38F /* NVActivityIndicatorView.swift */; };
 		803D61031BF8DCA3004EF38F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803D61021BF8DCA3004EF38F /* LoadingView.swift */; };
 		803D61071BF901F8004EF38F /* CellResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803D61061BF901F8004EF38F /* CellResult.swift */; };
+		8069858D1C89BB4C006BEEFB /* MKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806985861C89BB4C006BEEFB /* MKButton.swift */; };
+		8069858E1C89BB4C006BEEFB /* MKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806985871C89BB4C006BEEFB /* MKColor.swift */; };
+		8069858F1C89BB4C006BEEFB /* MKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806985881C89BB4C006BEEFB /* MKImageView.swift */; };
+		806985901C89BB4C006BEEFB /* MKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806985891C89BB4C006BEEFB /* MKLabel.swift */; };
+		806985911C89BB4C006BEEFB /* MKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8069858A1C89BB4C006BEEFB /* MKLayer.swift */; };
+		806985921C89BB4C006BEEFB /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8069858B1C89BB4C006BEEFB /* MKTableViewCell.swift */; };
+		806985931C89BB4C006BEEFB /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8069858C1C89BB4C006BEEFB /* MKTextField.swift */; };
+		807255AF1C7E832700B12A41 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807255AE1C7E832700B12A41 /* SweetAlert.swift */; };
 		808F0CAE1BEC54C000F7B3B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808F0CAD1BEC54C000F7B3B0 /* AppDelegate.swift */; };
 		808F0CB61BEC54C000F7B3B0 /* GenteBoaBeta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 808F0CB41BEC54C000F7B3B0 /* GenteBoaBeta.xcdatamodeld */; };
 		808F0CB81BEC54C000F7B3B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808F0CB71BEC54C000F7B3B0 /* Assets.xcassets */; };
@@ -150,6 +158,14 @@
 		803D60FE1BF8DC80004EF38F /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		803D61021BF8DCA3004EF38F /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		803D61061BF901F8004EF38F /* CellResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellResult.swift; sourceTree = "<group>"; };
+		806985861C89BB4C006BEEFB /* MKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKButton.swift; sourceTree = "<group>"; };
+		806985871C89BB4C006BEEFB /* MKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKColor.swift; sourceTree = "<group>"; };
+		806985881C89BB4C006BEEFB /* MKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKImageView.swift; sourceTree = "<group>"; };
+		806985891C89BB4C006BEEFB /* MKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLabel.swift; sourceTree = "<group>"; };
+		8069858A1C89BB4C006BEEFB /* MKLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLayer.swift; sourceTree = "<group>"; };
+		8069858B1C89BB4C006BEEFB /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
+		8069858C1C89BB4C006BEEFB /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
+		807255AE1C7E832700B12A41 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
 		808F0CAA1BEC54C000F7B3B0 /* GenteBoaBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenteBoaBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808F0CAD1BEC54C000F7B3B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808F0CB51BEC54C000F7B3B0 /* GenteBoaBeta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenteBoaBeta.xcdatamodel; sourceTree = "<group>"; };
@@ -290,6 +306,20 @@
 			name = "Custom Activity Indicator";
 			sourceTree = "<group>";
 		};
+		806985941C89BB52006BEEFB /* Material Kit */ = {
+			isa = PBXGroup;
+			children = (
+				806985861C89BB4C006BEEFB /* MKButton.swift */,
+				806985871C89BB4C006BEEFB /* MKColor.swift */,
+				806985881C89BB4C006BEEFB /* MKImageView.swift */,
+				806985891C89BB4C006BEEFB /* MKLabel.swift */,
+				8069858A1C89BB4C006BEEFB /* MKLayer.swift */,
+				8069858B1C89BB4C006BEEFB /* MKTableViewCell.swift */,
+				8069858C1C89BB4C006BEEFB /* MKTextField.swift */,
+			);
+			name = "Material Kit";
+			sourceTree = "<group>";
+		};
 		808F0CA11BEC54C000F7B3B0 = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +432,7 @@
 		808F0D0F1BEC58F800F7B3B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				806985941C89BB52006BEEFB /* Material Kit */,
 				808F0CB91BEC54C000F7B3B0 /* LaunchScreen.storyboard */,
 				808F0D1A1BED271200F7B3B0 /* CardView.swift */,
 				80C7AF4D1BF7E68F002F6A0E /* CellFeedback.swift */,
@@ -411,6 +442,7 @@
 				809B55871BFC025B006CD894 /* DoneView.swift */,
 				80E776F51C4ADF510022E41F /* CourseFilterPicker.swift */,
 				80E776F91C4C1FDA0022E41F /* CellProfile_TableViewCell.swift */,
+				807255AE1C7E832700B12A41 /* SweetAlert.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -575,16 +607,20 @@
 				803D60DF1BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				803D60EF1BF8DC5D004EF38F /* NVActivityIndicatorAnimationBlank.swift in Sources */,
 				80C6FD8E1BFF964F00509248 /* PrivacyViewController.swift in Sources */,
+				806985901C89BB4C006BEEFB /* MKLabel.swift in Sources */,
 				808F0D0A1BEC58C700F7B3B0 /* DAOParse.swift in Sources */,
 				803D61031BF8DCA3004EF38F /* LoadingView.swift in Sources */,
 				803D60F01BF8DC5D004EF38F /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
 				803D61011BF8DC80004EF38F /* NVActivityIndicatorView.swift in Sources */,
 				803D60ED1BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
+				806985931C89BB4C006BEEFB /* MKTextField.swift in Sources */,
 				808F0CB61BEC54C000F7B3B0 /* GenteBoaBeta.xcdatamodeld in Sources */,
 				803D60F41BF8DC5D004EF38F /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				803D60E91BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				803D60F31BF8DC5D004EF38F /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
 				808F0D1F1BEE8C5A00F7B3B0 /* People.swift in Sources */,
+				8069858E1C89BB4C006BEEFB /* MKColor.swift in Sources */,
+				8069858F1C89BB4C006BEEFB /* MKImageView.swift in Sources */,
 				803D60E21BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				808F0CFE1BEC57FB00F7B3B0 /* Login_ViewController.swift in Sources */,
 				803D60EB1BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
@@ -600,6 +636,7 @@
 				80E776F41C4ACFB90022E41F /* PopOverMenu_ViewController.swift in Sources */,
 				80C7AF4E1BF7E68F002F6A0E /* CellFeedback.swift in Sources */,
 				808F0D041BEC58A500F7B3B0 /* User.swift in Sources */,
+				807255AF1C7E832700B12A41 /* SweetAlert.swift in Sources */,
 				80C7AF501BF7F5C7002F6A0E /* GMColor.swift in Sources */,
 				803D60F91BF8DC5D004EF38F /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
 				803D60EE1BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
@@ -610,12 +647,14 @@
 				803D60EA1BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				803D60F11BF8DC5D004EF38F /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				808F0CAE1BEC54C000F7B3B0 /* AppDelegate.swift in Sources */,
+				8069858D1C89BB4C006BEEFB /* MKButton.swift in Sources */,
 				80E776F61C4ADF510022E41F /* CourseFilterPicker.swift in Sources */,
 				80E776F81C4C17080022E41F /* PeopleDetail_ViewController.swift in Sources */,
 				809B55861BFBF7B0006CD894 /* AtencaoView.swift in Sources */,
 				808F0D111BEC5A1500F7B3B0 /* Register_ViewController.swift in Sources */,
 				803D61071BF901F8004EF38F /* CellResult.swift in Sources */,
 				803D60E11BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
+				806985921C89BB4C006BEEFB /* MKTableViewCell.swift in Sources */,
 				803D60F81BF8DC5D004EF38F /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				808F0D131BEC5A2D00F7B3B0 /* Home_ViewController.swift in Sources */,
 				808F0D0B1BEC58C700F7B3B0 /* Cursos.swift in Sources */,
@@ -626,6 +665,7 @@
 				80E776FA1C4C1FDA0022E41F /* CellProfile_TableViewCell.swift in Sources */,
 				808F0D1D1BED2C8900F7B3B0 /* Hashtag.swift in Sources */,
 				803D60F51BF8DC5D004EF38F /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
+				806985911C89BB4C006BEEFB /* MKLayer.swift in Sources */,
 				803D60E51BF8DC5D004EF38F /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				808F0D001BEC581600F7B3B0 /* StaticsAndExtensions.swift in Sources */,
 				809B55881BFC025B006CD894 /* DoneView.swift in Sources */,
@@ -777,6 +817,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FilipoNegrao.GenteBoa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -792,6 +833,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FilipoNegrao.GenteBoa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

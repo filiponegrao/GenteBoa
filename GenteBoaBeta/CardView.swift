@@ -224,6 +224,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             self.aboutView.text = "Sobre mim: \(self.people.about)"
             self.aboutView.font = UIFont(name: "Arial Rounded MT Bold", size: 14)
             self.aboutView.textColor = UIColor.grayColor()
+            self.aboutView.userInteractionEnabled = false
             
             cell.addSubview(self.aboutView)
             

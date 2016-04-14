@@ -101,6 +101,7 @@ class Search_ViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.name.text = name
         cell.imageview.image = self.result[indexPath.row].photo
+        cell.imageview.contentMode = .ScaleAspectFill
         
         var curso: String!
         if(self.result[indexPath.row].course.characters.count > 26)

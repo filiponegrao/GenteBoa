@@ -49,7 +49,7 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
     
     var filterPicker : UIPickerView!
     
-    var cursos = Cursos.cursosDisponiveis()
+    var cursos = [String]()
     
     var button: UIButton!
     
@@ -58,6 +58,7 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
     override func viewDidLoad()
     {
         self.cursos.append("Todos")
+        self.cursos += Cursos.cursosDisponiveis()
         super.viewDidLoad()
 
         self.view.backgroundColor = GMColor.grey300Color()
@@ -135,6 +136,13 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
                 self.view.addSubview(self.currentCardView!)
                 self.loadingView?.removeFromSuperview()
                 self.carregaProximo()
+            }
+            else
+            {
+                self.loadingView?.removeFromSuperview()
+                
+                SweetAlert().showAlert("Erro!", subTitle: "Não foram encontrados usuarios! O erro porde ter sido causado por falta de internet, problema no servidor ou inconsistencia. Tente reabrir o app!", style: AlertStyle.Warning, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
+
             }
         }
         
@@ -297,23 +305,26 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
         }
         else if(!self.delay)
         {
-            self.delay = true
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                
-                self.currentCardView!.frame.origin.x -= 15
-                
-                }, completion: { (success: Bool) -> Void in
+            if(currentCardView != nil)
+            {
+                self.delay = true
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
                     
-                    UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    self.currentCardView!.frame.origin.x -= 15
+                    
+                    }, completion: { (success: Bool) -> Void in
                         
-                        self.currentCardView!.frame.origin.x = 10
-                        
-                        }, completion: { (success: Bool) -> Void in
+                        UIView.animateWithDuration(0.1, animations: { () -> Void in
                             
-                            self.delay = false
-                    })
-                    
-            })
+                            self.currentCardView!.frame.origin.x = 10
+                            
+                            }, completion: { (success: Bool) -> Void in
+                                
+                                self.delay = false
+                        })
+                        
+                })
+            }
         }
     }
     
@@ -344,22 +355,25 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
         }
         else
         {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                
-                self.currentCardView!.frame.origin.x += 15
-                
-                }, completion: { (success: Bool) -> Void in
+            if(self.currentCardView != nil)
+            {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
                     
-                    UIView.animateWithDuration(0.1, animations: { () -> Void in
-                        
-                        self.currentCardView!.frame.origin.x = 10
-                        
-                        }, completion: { (success: Bool) -> Void in
-                            
-                            
-                    })
+                    self.currentCardView!.frame.origin.x += 15
                     
-            })
+                    }, completion: { (success: Bool) -> Void in
+                        
+                        UIView.animateWithDuration(0.1, animations: { () -> Void in
+                            
+                            self.currentCardView!.frame.origin.x = 10
+                            
+                            }, completion: { (success: Bool) -> Void in
+                                
+                        })
+                        
+                })
+
+            }
         }
     }
     
@@ -377,18 +391,24 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
     
     func giveFeedback()
     {
-        let feedbackController = FeedBack_ViewController()
-        
-        feedbackController.modalPresentationStyle = .FullScreen
-        feedbackController.modalTransitionStyle = .PartialCurl
-        feedbackController.people = self.currentUser
-        feedbackController.profileImage = self.currentCardView!.imageView.image
-        
-        self.presentViewController(feedbackController, animated: true) { () -> Void in
+        if(self.currentCardView != nil)
+        {
+            let feedbackController = FeedBack_ViewController()
             
+            feedbackController.modalPresentationStyle = .FullScreen
+            feedbackController.modalTransitionStyle = .PartialCurl
+            feedbackController.people = self.currentUser
+            feedbackController.profileImage = self.currentCardView!.imageView.image
+            
+            self.presentViewController(feedbackController, animated: true) { () -> Void in
+                
+            }
         }
-//        self.navigationController?.pushViewController(feedbackController, animated: true)
-        
+        else
+        {
+            SweetAlert().showAlert("Erro!", subTitle: "Não foram encontrados usuarios! O erro porde ter sido causado por falta de internet, problema no servidor ou inconsistencia. Tente reabrir o app!", style: AlertStyle.Warning, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
+
+        }
     }
     
     func openPeopleProfile()

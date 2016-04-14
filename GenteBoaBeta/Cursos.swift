@@ -12,7 +12,8 @@ class Cursos
 {
     class func cursosDisponiveis() -> [String]
     {
-        var cursos =  ["Administraçao", "Arquitetura", "Artes Cênicas", "CIÊNCIA DA COMPUTAÇÃO", "CIÊNCIAS BIOLÓGICAS", "CIÊNCIAS ECONÔMICAS (ECONOMIA)", "CIÊNCIAS SOCIAIS", "COMUNICAÇÃO SOCIAL  (CICLO BÁSICO)", "COMUNICAÇÃO SOCIAL  (PUBLICIDADE E PROPAGANDA)", "JORNALISMO", "CINEMA", "DESIGN (COMUNICAÇÃO VISUAL)", "DESIGN (MIDIA DIGITAL)", "DESIGN (MODA)", "DESIGN (PROJETO DE PRODUTO)", "DIREITO", "ENGENHARIA (CICLO BÁSICO)", "ENGENHARIA AMBIENTAL", "ENGENHARIA CIVIL ", "ENGENHARIA DA COMPUTAÇÃO", "ENGENHARIA CONTROLE E AUTOMAÇÃO ", "ENGENHARIA ELÉTRICA", "ENGENHARIA MATERIAIS E NANOTECNOLOGIA","ENGENHARIA MECÂNICA","ENGENHARIA PETRÓLEO", "ENGENHARIA PRODUÇÃO", "ENGENHARIA QUÍMICA","FILOSOFIA", "FÍSICA","GEOGRAFIA","HISTÓRIA","LETRAS (PT e EN)", "LETRAS (LÍNGUA PORTUGUESA)","LETRAS (PRODUÇÃO TEXTUAL)", "LETRAS (TRADUTOR)","MATEMÁTICA","PEDAGOGIA", "PRODUÇÃO E GESTÃO DE MÍDIAS EM EDUCAÇÃO", "PSICOLOGIA","QUÍMICA", "RELAÇÕES INTERNACIONAIS", "SERVIÇO SOCIAL","SISTEMAS DE INFORMAÇÃO", "TEOLOGIA"]
+        var cursos =  ["Administração", "Arquitetura e Urbanismo", "Artes Cênicas", "Ciência da Computação", "Ciências Biológicas", "Ciências Econômicas", "Ciências Sociais", "Comunicação Social", "Design", "Direito", "Engenharia Ambiental", "Engenharia Civil" ,"Engenharia Computação", "Engenharia Controle e Automação", "Engenharia Elétrica", "Engenharia Materiais e Nanotecnologia" ,"Engenharia Mecânica", "Engenharia Petróleo", "Engenharia Produção", "Engenharia Química", "Filosofia", "Física",
+            "Geografia" ,"História", "Letras", "Matemática", "Pedagogia", "Produção e Gestão de Mídias em Educação", "Psicologia", "Química" ,"Relações Internacionais", "Serviço Social", "Sistemas de Informação", "Teologia"]
         
         cursos.sortInPlace { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
         

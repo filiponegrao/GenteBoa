@@ -56,15 +56,17 @@ class FeedBack_ViewController: UIViewController, UITableViewDelegate, UITableVie
         self.imageView1.image = self.profileImage
         self.imageView1.layer.cornerRadius = self.imageView1.frame.size.width/2
         self.imageView1.clipsToBounds = true
-        self.imageView1.layer.borderWidth = 1
+        self.imageView1.contentMode = .ScaleAspectFill
+        
         self.positiveView.addSubview(self.imageView1)
         
+        
         self.texto1 = UILabel(frame: CGRectMake(self.imageView1.frame.origin.x + self.imageView1.frame.size.width + 20, self.imageView1.frame.origin.y - 20, screenWidth - self.imageView1.frame.size.width - 10, screenHeight/4))
-        self.texto1.text = "Escolha tres pontos positivos meus ao trabalhar em grupo"
+        self.texto1.text = "Escolha três pontos positivos meus ao trabalhar em grupo"
         self.texto1.numberOfLines = 4
         self.positiveView.addSubview(self.texto1)
         
-        self.tableView1 = UITableView(frame: CGRectMake(0, self.imageView1.frame.origin.y + self.imageView1.frame.size.height + 10, screenWidth, screenHeight*2/3 - 50))
+        self.tableView1 = UITableView(frame: CGRectMake(0, self.imageView1.frame.origin.y + self.imageView1.frame.size.height + 10, screenWidth, screenHeight - (self.imageView1.frame.origin.y + self.imageView1.frame.size.height + 10) - 50))
         self.tableView1.delegate = self
         self.tableView1.dataSource = self
         self.tableView1.backgroundColor = GMColor.green300Color()
@@ -84,11 +86,11 @@ class FeedBack_ViewController: UIViewController, UITableViewDelegate, UITableVie
         self.negativeView.addSubview(self.imageView2)
         
         self.texto2 = UILabel(frame: CGRectMake(self.imageView2.frame.origin.x + self.imageView2.frame.size.width + 20, self.imageView2.frame.origin.y - 20, screenWidth - self.imageView2.frame.size.width - 10, screenHeight/4))
-        self.texto2.text = "Escolha tres pontos negativos meus ao trabalhar em grupo"
+        self.texto2.text = "Escolha três pontos em que posso melhorar ao trabalhar em grupo"
         self.texto2.numberOfLines = 4
         self.negativeView.addSubview(self.texto2)
         
-        self.tableView2 = UITableView(frame: CGRectMake(0, self.imageView2.frame.origin.y + self.imageView2.frame.size.height + 10, screenWidth, screenHeight*2/3 - 50))
+        self.tableView2 = UITableView(frame: CGRectMake(0, self.imageView2.frame.origin.y + self.imageView2.frame.size.height + 10, screenWidth, screenHeight - (self.imageView1.frame.origin.y + self.imageView1.frame.size.height + 10) - 50))
         self.tableView2.delegate = self
         self.tableView2.dataSource = self
         self.tableView2.backgroundColor = GMColor.red300Color()
@@ -108,7 +110,7 @@ class FeedBack_ViewController: UIViewController, UITableViewDelegate, UITableVie
         self.button.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 20)
         self.view.addSubview(self.button)
         
-        self.cancelar = UIButton(frame: CGRectMake(20,20,screenWidth, 44))
+        self.cancelar = UIButton(frame: CGRectMake(10,20,100, 44))
 //        self.cancelar.center = CGPointMake(screenWidth/2, 40)
         self.cancelar.titleLabel?.textAlignment = .Left
         self.cancelar.setTitle("Cancelar", forState: .Normal)
@@ -116,12 +118,15 @@ class FeedBack_ViewController: UIViewController, UITableViewDelegate, UITableVie
         self.cancelar.setTitleColor(GMColor.orange300Color(), forState: .Normal)
         self.view.addSubview(self.cancelar)
         
-        self.view.addSubview(AtencaoView(controller: self))
+//        self.view.addSubview(AtencaoView(controller: self))
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool)
+    {
         super.viewDidAppear(animated)
         removePartialCurlTap()
+        
+        SweetAlert().showAlert("Atenção!", subTitle: "Lembre-se que este aplicativo trata do ambiente de trabalho em equipe.\nTenha certeza que pode dar um feedback construtivo!", style: AlertStyle.Warning, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
     }
 
     override func didReceiveMemoryWarning()
@@ -146,7 +151,7 @@ class FeedBack_ViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.selectionStyle = .None
         cell.backgroundColor = UIColor.clearColor()
-        cell.name.text = " # " + self.hashtags[indexPath.row]
+        cell.name.text = self.hashtags[indexPath.row]
         
         if(tableView == tableView1)
         {
@@ -293,7 +298,21 @@ class FeedBack_ViewController: UIViewController, UITableViewDelegate, UITableVie
         else
         {
             DAOPeople.sharedInstance.giveSomeoneFeedback(self.people.email, positive: self.positives, negative: self.negatives)
-            self.view.addSubview(DoneView(controller: self))
+            SweetAlert().showAlert("Obrigado pelo Feedback", subTitle: "Seu feedback pode demorar um tempo para ser processado!\nVoce é gente boa!", style: AlertStyle.Success, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
+                { (isOtherButton) -> Void in
+                    if isOtherButton == true
+                    {
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            
+                        })
+                    }
+                    else
+                    {
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            
+                        })
+                    }
+            }
         }
     }
     

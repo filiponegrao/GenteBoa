@@ -37,10 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             nav.viewControllers = [home]
             self.window?.rootViewController = nav
         }
-        else if (userStatus == UserCondition.incompleteRegister)
-        {
-            self.window?.rootViewController = Register_ViewController()
-        }
         else
         {
             self.window?.rootViewController = Login_ViewController()

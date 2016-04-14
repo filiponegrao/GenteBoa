@@ -59,6 +59,10 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
         self.pickerView = UIPickerView()
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: "endEditions")
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool)
@@ -72,10 +76,7 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillDisappear(animated: Bool)
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UserCondition.userLogged.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UserCondition.unknowError.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     //Sobe a view e desce a view
@@ -98,7 +99,7 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
     {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue()
         {
-            self.tableView.contentOffset.y = -50
+            self.tableView.contentOffset.y = 0
         }
         
     }
@@ -149,7 +150,7 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
         case 0:
             
             let label = UILabel(frame: CGRectMake(20,10, screenWidth - 40, 80))
-            label.text = "Atualize suas informações. Lembrando que é importante uma atualização a cada seis meses, pois a atualização do semestre nao é automática. No caso de troca de curso tambem é importante atualizar as informações."
+            label.text = "Para uma melhor experiência no aplicativo, mantenha suas informações sobre curso e período atualizadas."
             label.numberOfLines = 0
             label.textColor = UIColor.grayColor()
             label.font = UIFont(name: "Helvetica", size: 12)
@@ -264,11 +265,19 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
     
     func terminar()
     {
-        if(self.universidade.text?.characters.count != 0 && self.curso.text?.characters.count != 0 && self.periodo.text?.characters.count != 0 && self.about.text?.characters.count != 0)
+        if(self.universidade.text?.characters.count != 0 && self.curso.text?.characters.count != 0 && self.periodo.text?.characters.count != 0 && self.about.text?.characters.count != 0 && self.about.text != "Gente boa" && self.universidade.text != "Gente boa" && self.periodo.text != "0")
         {
             self.loadingView = LoadingView()
             self.view.addSubview(self.loadingView)
-            DAOUser.sharedInstance.atualizarDados(self.universidade.text!, curso: self.curso.text!, periodo:  Int(self.periodo.text!)!, sobre: self.about.text!)
+            
+            if((self.presentingViewController?.isKindOfClass(Login_ViewController)) != nil)
+            {
+                DAOUser.sharedInstance.configUserFace(self.universidade.text!, course: self.curso.text!, period: Int(self.periodo.text!)!, about: self.about.text!)
+            }
+            else
+            {
+                DAOUser.sharedInstance.atualizarDados(self.universidade.text!, curso: self.curso.text!, periodo:  Int(self.periodo.text!)!, sobre: self.about.text!)
+            }
         }
         else
         {
@@ -288,7 +297,20 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
         
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction) -> Void in
             
-            self.navigationController?.popViewControllerAnimated(true)
+            if((self.presentingViewController?.isKindOfClass(Login_ViewController)) != nil)
+            {
+                let appdelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+
+                
+                let home = Home_ViewController()
+                let nav = UINavigationController()
+                nav.viewControllers = [home]
+                appdelegate.window?.rootViewController = nav
+            }
+            else
+            {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
             
         }))
         
@@ -383,5 +405,10 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
             self.periodo.text = "\(Periodos.periodosDisponiveis()[row])"
             self.periodo.endEditing(true)
         }
+    }
+    
+    func endEditions()
+    {
+        self.view.endEditing(true)
     }
 }
