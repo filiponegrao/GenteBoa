@@ -69,7 +69,7 @@ class PeopleDetail_ViewController: UIViewController, UITableViewDelegate, UITabl
         self.scrollView.addSubview(self.nameLabel)
         
         self.courseLabel = UILabel(frame: CGRectMake(10, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height, screenWidth - 20, 40))
-        self.courseLabel.text = "\(self.people.course) na \(self.people.university)"
+        self.courseLabel.text = "\(self.people.period)º Período de \(self.people.course) na \(self.people.university)"
         self.courseLabel.adjustsFontSizeToFitWidth = true
         self.courseLabel.minimumScaleFactor = 0.1
         self.courseLabel.numberOfLines = 2

@@ -126,25 +126,7 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
         self.loadingView = LoadingView()
         self.navigationController!.view.addSubview(self.loadingView)
         
-        DAOPeople.sharedInstance.getRandomUser(DAOUser.sharedInstance.getCourse()!) { (people) -> Void in
-            
-            if(people != nil)
-            {
-                self.currentUser = people!
-                self.currentCardView = CardView(frame: CGRectMake(10, 80, screenWidth - 20, screenHeight - 80 - self.staticBar.frame.size.height - 10), people: self.currentUser)
-//                self.currentCardView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "swipeCard:"))
-                self.view.addSubview(self.currentCardView!)
-                self.loadingView?.removeFromSuperview()
-                self.carregaProximo()
-            }
-            else
-            {
-                self.loadingView?.removeFromSuperview()
-                
-                SweetAlert().showAlert("Erro!", subTitle: "Não foram encontrados usuarios! O erro porde ter sido causado por falta de internet, problema no servidor ou inconsistencia. Tente reabrir o app!", style: AlertStyle.Warning, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
-
-            }
-        }
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openPeopleProfile", name: "clickProfile", object: nil)
         
@@ -162,8 +144,35 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
         self.button.setTitle("Selecionar", forState: .Normal)
         self.button.addTarget(self, action: "selectFilter", forControlEvents: .TouchUpInside)
         self.filterView.addSubview(self.button)
+        
+        self.carregaDados()
     }
 
+    func carregaDados()
+    {
+        DAOPeople.sharedInstance.getRandomUser(DAOUser.sharedInstance.getCourse()!) { (people) -> Void in
+            
+            if(people != nil)
+            {
+                self.currentCardView?.removeFromSuperview()
+                
+                self.currentUser = people!
+                self.currentCardView = CardView(frame: CGRectMake(10, 80, screenWidth - 20, screenHeight - 80 - self.staticBar.frame.size.height - 10), people: self.currentUser)
+                self.view.addSubview(self.currentCardView!)
+                self.loadingView?.removeFromSuperview()
+                self.carregaProximo()
+            }
+            else
+            {
+                self.loadingView?.removeFromSuperview()
+                
+                SweetAlert().showAlert("Erro!", subTitle: "Não foram encontrados usuarios! O erro porde ter sido causado por falta de internet, problema no servidor ou inconsistencia. Tente reabrir o app!", style: AlertStyle.Warning, buttonTitle:"Ok", buttonColor: GMColor.orange300Color())
+                
+            }
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -331,8 +340,9 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
     
     func previousPerson()
     {
-        if(self.previousUser != nil)
+        if(self.previousUser != nil && !self.delay)
         {
+            self.delay = true
             self.previousCardView = CardView(frame: self.currentCardView!.frame, people: self.previousUser!)
             self.previousCardView!.frame.origin.x = -(screenWidth + 10)
             self.view.addSubview(self.previousCardView!)
@@ -351,12 +361,17 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
                     self.nextUser = self.currentUser
                     self.currentUser = self.previousUser
                     self.previousUser = nil
+                    
+                    self.delay = false
+
             })
         }
-        else
+        else if(!self.delay)
         {
             if(self.currentCardView != nil)
             {
+                self.delay = true
+
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     
                     self.currentCardView!.frame.origin.x += 15
@@ -369,6 +384,7 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
                             
                             }, completion: { (success: Bool) -> Void in
                                 
+                                self.delay = false
                         })
                         
                 })
@@ -457,7 +473,8 @@ class Home_ViewController: UIViewController, UIViewControllerTransitioningDelega
         self.closeFilter()
         DAOPeople.sharedInstance.peopleSeen = [String]()
         self.nextUser = nil
-        self.carregaProximo()
+        
+        self.carregaDados()
     }
     
 //    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?

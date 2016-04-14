@@ -99,15 +99,17 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             
             self.courseLabel?.removeFromSuperview()
             self.courseLabel = UILabel(frame: CGRectMake(10, self.nameLabel.frame.origin.y + self.nameLabel.frame.size.height, self.tableView.frame.size.width, cell.frame.size.height/8))
-            self.courseLabel.font = UIFont(name: "Helvetica", size: 12)
+            self.courseLabel.font = UIFont(name: "Helvetica-Bold", size: 12)
+            self.courseLabel.numberOfLines = 0
+            self.courseLabel.textColor = UIColor.grayColor()
             if(self.people.course.characters.count > 26)
             {
                 let curso = self.people.course.componentsSeparatedByString("(") [0]
-                self.courseLabel.text = "\(curso) na \(self.people.university)"
+                self.courseLabel.text = "\(self.people.period)º Período de \(curso)"
             }
             else
             {
-                self.courseLabel.text = "\(self.people.course) na \(self.people.university)"
+                self.courseLabel.text = "\(self.people.period)º Período de \(self.people.course)"
             }
             cell.addSubview(self.courseLabel)
             
@@ -179,7 +181,7 @@ class CardView : UIView, UITableViewDelegate, UITableViewDataSource, UIScrollVie
             cell.addSubview(neg)
 
             let label = UILabel(frame: CGRectMake(0,0,neg.frame.size.width/3,neg.frame.size.height))
-            label.text = "posso\nmelhorar"
+            label.text = "Posso\nmelhorar"
             label.numberOfLines = 2
             label.textAlignment = .Center
             label.font = UIFont(name: "Helvetica Bold", size: 14)

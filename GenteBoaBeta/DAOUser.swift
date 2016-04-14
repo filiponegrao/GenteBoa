@@ -376,6 +376,7 @@ class DAOUser
                 self.user.course = curso
                 self.user.period = periodo
                 self.user.about = sobre
+                
                 self.save()
                 NSNotificationCenter.defaultCenter().postNotificationName(UserCondition.userLogged.rawValue, object: nil)
 

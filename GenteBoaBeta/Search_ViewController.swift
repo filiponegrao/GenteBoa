@@ -168,9 +168,17 @@ class Search_ViewController: UIViewController, UITableViewDelegate, UITableViewD
         {
             self.searchBar.endEditing(true)
             DAOParse.sharedInstance.getUsersWithString(searchBar.text!, callback: { (results) -> Void in
-                print("\(results.count) Usuarios retornados para o controller")
-                self.result = results
-                self.tableView.reloadData()
+                
+                if(results.count > 0)
+                {
+                    self.result = results
+                    self.tableView.reloadData()
+                }
+                else
+                {
+                    self.result = [MetaPeople]()
+                    self.tableView.reloadData()
+                }
             })
         }
     }
@@ -178,8 +186,16 @@ class Search_ViewController: UIViewController, UITableViewDelegate, UITableViewD
     func searchBarCancelButtonClicked(searchBar: UISearchBar)
     {
         self.searchBar.endEditing(true)
+        
+        self.result = [MetaPeople]()
+        
+        self.tableView.reloadData()
     }
     
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.searchBar.endEditing(true)
+    }
     
     
 

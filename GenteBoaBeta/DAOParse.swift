@@ -67,6 +67,8 @@ class DAOParse
                         
                     })
                 }
+                
+                callback(results: [MetaPeople]())
             }
             
         })

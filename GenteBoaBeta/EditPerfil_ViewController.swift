@@ -10,7 +10,7 @@ import UIKit
 
 class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource
 {
-
+    
     var tableView : UITableView!
     
     var edit: Bool = false
@@ -49,7 +49,7 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.button = UIButton(frame: CGRectMake(0, screenHeight - 50, screenWidth, 50))
         self.button.backgroundColor = GMColor.green300Color()
-        self.button.setTitle("Terminar", forState: .Normal)
+        self.button.setTitle("Concluir", forState: .Normal)
         self.button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.button.setTitleColor(UIColor.grayColor(), forState: .Disabled)
         self.button.addTarget(self, action: "terminar", forControlEvents: .TouchUpInside)
@@ -195,7 +195,9 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
             cell.addSubview(titulo)
             
             self.periodo = UITextField(frame: CGRectMake(10, titulo.frame.origin.y + titulo.frame.size.height, screenWidth - 20, 40))
+            
             self.periodo.text = "\(DAOUser.sharedInstance.getPeriod())"
+            
             self.periodo.textColor = UIColor.grayColor()
             self.periodo.borderStyle = .RoundedRect
             self.periodo.delegate = self
@@ -213,10 +215,10 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
             about.text = DAOUser.sharedInstance.getAbout()
             about.textColor = UIColor.grayColor()
             about.font = UIFont(name: "Helvetica", size: 14)
-            self.about.delegate = self
             self.about.layer.borderWidth = 0.5
             self.about.layer.borderColor = GMColor.grey300Color().CGColor
             self.about.layer.cornerRadius = 5
+            self.about.delegate = self
             
             cell.addSubview(about)
 
@@ -238,6 +240,10 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
         self.button.enabled = true
         self.pickerView.reloadAllComponents()
         self.edit = true
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        self.button.enabled = true
     }
     
     func back()
@@ -270,7 +276,7 @@ class EditPerfil_ViewController: UIViewController, UITableViewDelegate, UITableV
             self.loadingView = LoadingView()
             self.view.addSubview(self.loadingView)
             
-            if((self.presentingViewController?.isKindOfClass(Login_ViewController)) != nil)
+            if(self.presentingViewController!.isKindOfClass(Login_ViewController))
             {
                 DAOUser.sharedInstance.configUserFace(self.universidade.text!, course: self.curso.text!, period: Int(self.periodo.text!)!, about: self.about.text!)
             }
